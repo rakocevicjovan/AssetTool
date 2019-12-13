@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Gameproject edit</h1>
+
+    <div class="container">
+        {{ form_start(edit_form) }}
+            {{ form_widget(edit_form) }}
+            <input type="submit" class="btn btn-success btn-lg btn-block mb-2" value="Edit" />
+        {{ form_end(edit_form) }}
+
+        <a class="btn btn-info btn-lg btn-block mb-2" href="{{ path('gameproject_index') }}">Back to the list</a>
+        {{ form_start(delete_form) }}
+            <input type="submit" class="btn btn-danger btn-lg btn-block" value="Delete">
+        {{ form_end(delete_form) }}
+    </div>
+    
+{% endblock %}

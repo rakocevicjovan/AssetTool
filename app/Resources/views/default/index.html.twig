@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Headquarters {% endblock %}
+
+{% block body %}
+    
+    <!-- <div class="card-body rounded"> -->
+
+        <h2 class="my-3">What are we up to now?</h2>
+
+        <br/>
+
+        <a class="btn btn-secondary btn-lg btn-block my-3" href="{{ path('gameproject_index') }}" role="button"> Game projects </a>
+        <a class="btn btn-secondary btn-lg btn-block my-3" href="{{ path('level_index') }}" role="button"> Game Levels </a>
+        <a class="btn btn-secondary btn-lg btn-block my-3" href="#" role="button"> Individual Assets (TBD) </a>
+
+    <!--</div> -->
+
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}

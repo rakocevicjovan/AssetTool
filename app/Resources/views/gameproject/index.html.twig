@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Gameprojects list</h1>
+
+    <table class="table table-bordered table-dark table-striped table-hover">
+        <thead class="thead-light">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Config file path</th>
+                <th>Description</th>
+                <th>Level count</th>
+                <th>Created at</th>
+                <th>Last updated at</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for gameProject in gameProjects %}
+            <tr>
+                <td><a href="{{ path('gameproject_show', { 'id': gameProject.id }) }}">{{ gameProject.id }}</a></td>
+                <td>{{ gameProject.name }}</td>
+                <td>{{ gameProject.folderPath }}</td>
+                <td>{{ gameProject.description }}</td>
+                <td>{{ gameProject.levelCount }}</td>
+                <td>{% if gameProject.createdAt %}{{ gameProject.createdAt|date('d. M Y H:i') }}{% endif %}</td>
+                <td>{% if gameProject.updatedAt %}{{ gameProject.updatedAt|date('d. M Y H:i') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('gameproject_show', { 'id': gameProject.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('gameproject_edit', { 'id': gameProject.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul class="list-unstyled">
+        <li>
+            <a class="btn btn-success btn-lg btn-block" href="{{ path('gameproject_new') }}">Create a new gameProject</a>
+        </li>
+    </ul>
+{% endblock %}

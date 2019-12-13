@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Gameproject</h1>
+
+    <div class="container">
+        <table class="table table-bordered table-dark table-striped table-hover">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ gameProject.id }}</td>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <td>{{ gameProject.name }}</td>
+                </tr>
+                <tr>
+                    <th>Config file path</th>
+                    <td>{{ gameProject.folderPath }}</td>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <td>{{ gameProject.description }}</td>
+                </tr>
+                <tr>
+                    <th>Level count</th>
+                    <td>{{ gameProject.levelCount }}</td>
+                </tr>
+                <tr>
+                    <th>Levels</th>
+                    <td>
+                        {% for level in gameProject.levels %}
+                            {{ level }}
+                        {% endfor %}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Created at</th>
+                    <td>{% if gameProject.createdAt %}{{ gameProject.createdAt|date('d. M Y H:i') }}{% endif %}</td>
+                </tr>
+                <tr>
+                    <th>Updated at</th>
+                    <td>{% if gameProject.updatedAt %}{{ gameProject.updatedAt|date('d. M Y H:i') }}{% endif %}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <a class="btn btn-info btn-lg btn-block" href="{{ path('gameproject_index') }}">Back to the list</a>
+        <a class="btn btn-success btn-lg btn-block mb-2" href="{{ path('gameproject_edit', { 'id': gameProject.id }) }}">Edit</a>
+        <a class="btn btn-success btn-lg btn-block mb-2" href="{{ path('gameproject_get_json', { 'id': gameProject.id }) }}">Export as JSON</a>
+
+        {{ form_start(delete_form) }}
+            <input type="submit" class="btn btn-danger btn-lg btn-block" value="Delete">
+        {{ form_end(delete_form) }}
+    </div>
+
+{% endblock %}

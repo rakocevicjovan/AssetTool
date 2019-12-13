@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Levels list</h1>
+
+    <table class="table table-bordered table-dark table-striped table-hover">
+        <thead class="thead-light">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Json def path</th>
+                <th>Description</th>
+                <th>Project</th>
+                <th>Resource count</th>
+                <th>Created at</th>
+                <th>Updated at</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for level in levels %}
+            <tr>
+                <td><a href="{{ path('level_show', { 'id': level.id }) }}">{{ level.id }}</a></td>
+                <td>{{ level.name }}</td>
+                <td>{{ level.jsonDefPath }}</td>
+                <td>{{ level.description }}</td>
+                <td>{{ level.project }}</td>
+                <td>{{ level.resourceCount }}</td>
+                <td>{% if level.createdAt %}{{ level.createdAt|date('d. M Y H:i') }}{% endif %}</td>
+                <td>{% if level.updatedAt %}{{ level.updatedAt|date('d. M Y H:i') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('level_show', { 'id': level.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('level_edit', { 'id': level.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul class="list-unstyled">
+        <li>
+            <a class="btn btn-success btn-lg btn-block" href="{{ path('level_new') }}">Create a new level</a>
+        </li>
+    </ul>
+{% endblock %}

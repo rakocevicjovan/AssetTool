@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Level</h1>
+
+    <div class="container">
+        <table class="table table-bordered table-dark table-striped table-hover">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ level.id }}</td>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <td>{{ level.name }}</td>
+                </tr>
+                <tr>
+                    <th>Json def path</th>
+                    <td>{{ level.jsonDefPath }}</td>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <td>{{ level.description }}</td>
+                </tr>
+                <tr>
+                    <th>Project</th>
+                    <td>{{ level.project }}</td>
+                </tr>
+                <tr>
+                    <th>Resource count</th>
+                    <td>{{ level.resourceCount }}</td>
+                </tr>
+                <tr>
+                    <th>Created at</th>
+                    <td>{% if level.createdAt %}{{ level.createdAt|date('d. M Y H:i') }}{% endif %}</td>
+                </tr>
+                <tr>
+                    <th>Updated at</th>
+                    <td>{% if level.updatedAt %}{{ level.updatedAt|date('d. M Y H:i') }}{% endif %}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <a class="btn btn-info btn-lg btn-block" href="{{ path('level_index') }}">Back to the list</a>
+        <a class="btn btn-success btn-lg btn-block mb-2" href="{{ path('level_edit', { 'id': level.id }) }}">Edit</a>
+        <a class="btn btn-success btn-lg btn-block mb-2" href="{{ path('level_get_json', { 'id': level.id }) }}">Export as JSON</a>
+
+        {{ form_start(delete_form) }}
+            <input type="submit" class="btn btn-danger btn-lg btn-block" value="Delete">
+        {{ form_end(delete_form) }}
+    </div>
+{% endblock %}
